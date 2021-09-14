@@ -1,19 +1,16 @@
 class Main {
     public static void main(String[] args) {
-        final Switch switchon = new Switch();
-        Thread threadUser = new Thread(null, switchon::user, "Юзер");
-        Thread threadToy = new Thread(null, switchon::toy, "производитель");
+        Toy onoff = new Toy();
+        Thread threadUser = new Thread(null, onoff::user, "Юзер");
+        Thread threadUser2 = new Thread(null, onoff::user, "Юзер");
+        Thread threadToy = new Thread(null, onoff::toy, "Игрушка");
+        Thread threadToy2 = new Thread(null, onoff::toy, "Игрушка");
         threadUser.start();
-
-        try {
-            threadUser.join();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
         threadToy.start();
-        threadUser.interrupt();
-        threadToy.interrupt();
+        threadUser2.start();
+        threadToy2.start();
+        //new User().start();
+        //new Toy().start();
     }
 }
 
